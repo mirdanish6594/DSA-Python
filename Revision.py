@@ -1,9 +1,9 @@
 from typing import List
 
 class Solution:
-    def rotate(self, nums: List[int], k: int) -> None:
+    def reverseArray(self, nums: List[int], k: int) -> None:
         n = len(nums)
-        k = k % n  # to handle k > n
+        k = k % n
 
         def reverse(start: int, end: int):
             while start < end:
@@ -17,9 +17,8 @@ class Solution:
 
 if __name__ == "__main__":
     nums = list(map(int, input("Enter the array: ").split()))
-    k = int(input("Enter the no. of rotations: "))
+    k = int(input("Enter the value of k: "))
 
-    solution = Solution()
-    solution.rotate(nums, k)
-
-    print("Array after rotation: ", nums)
+    sol = Solution()
+    sol.reverseArray(nums, k)
+    print("The reversed array is: ", nums)
