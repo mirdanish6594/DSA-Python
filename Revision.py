@@ -1,26 +1,26 @@
 from typing import List
 
 class Solution:
-    def mergedInterval(self, intervals: List[List[int]]) -> List[List[int]]:
-        if not intervals:
-            return []
-        
-        intervals.sort(key=lambda x: x[0])
-        merged = [intervals[0]]
+    def productArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        answer = [0] * n
 
-        for current in intervals[1: ]:
-            last = merged[-1]
-            if current[0] <= last[1]:
-                last[1] = max(last[1], current[1])
-            else:
-                merged.append(current)
+        left_product = 1
+        for i in range(n):
+            answer[i] = left_product
+            left_product *= nums[i]
 
-        return merged
+        right_product = 1
+        for i in range(n-1, -1, -1):
+            answer[i] *= right_product
+            right_product *= nums[i]
+
+        return answer
     
-if __name__ == "__main__":
-    nums = list(map(int, input("Enter the intervals in spaced way: ").strip().split()))
-    intervals = [nums[i: i+2] for i in range(0, len(nums), 2)]
 
+if __name__ == "__main__":
+    nums = list(map(int, input("Enter the array: ").split()))
     sol = Solution()
-    result = sol.mergedInterval(intervals)
-    print("Merged Intervals: ", result)
+
+    result = sol.productArray(nums)
+    print("The product array is: ", result)
